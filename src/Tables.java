@@ -5,7 +5,7 @@ public class Tables {
     Double[][] waterSat_Temp = {
         //70 Values
 
-		/*Properties in Array:
+		/**Properties in Array:
 		 * 0) Temperature (T) [degrees C]
 		 * 1) Pressure (P) [bar]
 		 * 2) Sat Liquid Specific Volume (vf) [m^3/kg]
@@ -182,7 +182,7 @@ public class Tables {
     Double[][] waterSat_Pres = {
             //50 Values
 
-		/*Properties in Array:
+		/**Properties in Array:
 		 * 0) Pressure (P) [bar]
 		 * 1) Temperature (T) [degrees C]
 		 * 2) Sat Liquid Specific Volume (vf) [m^3/kg]
@@ -317,7 +317,7 @@ public class Tables {
 
     };
     Double[][][] waterSuper = {
-		/* Unfinished superheated tables
+		/**Unfinished superheated tables
 		 * Ended at 15.0 bar
 		 */
             {{0.06, 0.35,
