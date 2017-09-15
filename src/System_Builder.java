@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-
 public class System_Builder {
 
     private JFrame systemBuilder;
@@ -122,7 +121,7 @@ public class System_Builder {
                     perm.setIcon(temp.getIcon());
                     perm.setBounds(e.getX() - e.getX() % 32, e.getY() - e.getY() % 32, temp.getWidth(), temp.getHeight());
                     perm.setBlockAccess(temp.getBlockAccess());
-                    perm.setType(temp.getType());
+                    perm.setElementType(temp.getElementType());
                     perm.setGridX((e.getX() - 193) % 32);
                     perm.setGridY((e.getY() - 33) % 32);
                     systemBuilderPanel.add(perm, 0, 0);
@@ -148,7 +147,7 @@ public class System_Builder {
                                 }
                             }
                             //perm.printAccess();
-                            //System.out.println(perm.getType());
+                            //System.out.println(perm.getElementType());
                         }
                     });
                     /*for (boolean[][] x: perm.getBlockAccess()) {
@@ -176,28 +175,28 @@ public class System_Builder {
                 String mouseLocation = e.getComponent().getComponentAt(e.getPoint()).getClass().getSimpleName();
                 if (mouseLocation.equals("JLabel")) {
                     /**
-                     * Assigns element type and attributes
+                     * Assigns element elementType and attributes
                      */
                     temp.resetBlockAccess();
                     if (e.getY() >= testLbl.getY() && e.getY() <= testLbl.getY() + testLbl.getHeight() - 1) {
                         temp.setIcon(testCross);
-                        temp.setType("testCross");
+                        temp.setElementType("testCross");
                     } else if (e.getY() >= testLbl2.getY() && e.getY() <= testLbl2.getY() + testLbl2.getHeight() - 1) {
                         temp.setIcon(new ImageIcon(System_Builder.class.getResource("/javax/swing/plaf/basic/icons/JavaCup16.png")));
-                        temp.setType("JavaIcon");
+                        temp.setElementType("JavaIcon");
                     } else if (e.getY() >= horizontalPipeBlock.getY() && e.getY() <= horizontalPipeBlock.getY() + horizontalPipeBlock.getHeight() - 1) {
                         temp.setIcon(horizontalPipe);
-                        temp.setType("Pipe");
+                        temp.setElementType("Pipe");
                         temp.giveBlockAccess(1,1,2);
                         temp.giveBlockAccess(1,1,4);
                     } else if (e.getY() >= turbineBlock.getY() && e.getY() <= turbineBlock.getY() + turbineBlock.getHeight() - 1) {
                         temp.setIcon(turbine);
-                        temp.setType("Turbine");
+                        temp.setElementType("Turbine");
                         temp.giveBlockAccess(1,1,4);
                         temp.giveBlockAccess(3,2,2);
                     } else if (e.getY() >= state1Block.getY() && e.getY() <= state1Block.getY() + state1Block.getHeight() - 1) {
                         temp.setIcon(state1);
-                        temp.setType("State 1");
+                        temp.setElementType("State 1");
                         temp.giveBlockAccess(1,1,1);
                         temp.giveBlockAccess(1,1,2);
                         temp.giveBlockAccess(1,1,3);

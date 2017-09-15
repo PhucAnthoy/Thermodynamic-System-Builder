@@ -1,15 +1,38 @@
 import javax.swing.*;
 
+/**
+ * This class gives JLabel more variables and methods to take location and linkages of elements
+ */
 class Block extends JLabel {
-    String type;
-    public void setType(String type) {
-        this.type = type;
+    /**
+     * 
+     */
+    String elementType;
+    boolean flag = false;
+    State input = new State();
+    State output = new State();
+    int gridX;
+    int gridY;
+
+    /**
+     * Tracks which edges of element blocks have connections
+     *
+     * First index is row
+     * Second index is column
+     * Third index is face. 0 = North, 1 = East, 2 = South, 3 = West
+     *
+     *
+     */
+    boolean[][][] blockAccess = new boolean[3][3][4];
+    
+    public void setElementType(String elementType) {
+        this.elementType = elementType;
     }
-    public String getType() {
-        return type;
+    public String getElementType() {
+        return elementType;
     }
 
-    boolean flag = false;
+    
     public void set() {
         this.flag = true;
     }
@@ -20,11 +43,7 @@ class Block extends JLabel {
         return flag;
     }
 
-    State input = new State();
-    State output = new State();
-
-    int gridX;
-    int gridY;
+    
     public int getGridX() {
         return gridX;
     }
@@ -38,7 +57,6 @@ class Block extends JLabel {
         this.gridY = gridY;
     }
 
-    boolean[][][] blockAccess = new boolean[3][3][4];
     public void giveBlockAccess(int row, int column, int face) {
         blockAccess[--row][--column][--face] = true;
     }
