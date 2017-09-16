@@ -19,10 +19,13 @@ class Block extends JLabel {
     State output = new State();
 
     /**
-     * These two track the position of the topleft-most 32x32 tile relative to the system building space,
-     * i.e. position in the box
+     * Tracks the horizontal position of the topleft-most tile relative to the system building space
      */
     int gridX;
+
+    /**
+     * Tracks the vertical position of the topleft-most tile relative to the system building space
+     */
     int gridY;
 
     /**
@@ -48,6 +51,12 @@ class Block extends JLabel {
     public void setComponentType(String componentType) {
         this.componentType = componentType;
     }
+
+    /**
+     * Returns the name of the component
+     *
+     * @return the component name
+     */
     public String getComponentType() {
         return componentType;
     }
@@ -78,20 +87,19 @@ class Block extends JLabel {
      * @param face      Face of the tile, 0 for north, 1 for east, etc
      */
     public void giveBlockAccess(int row, int column, int face) {
-        blockAccess[row][column][face] = true;
+        this.blockAccess[row][column][face] = true;
     }
     public boolean checkBlockAccess(int row, int column, int face) {
-        return blockAccess[row][column][face];
+        return this.blockAccess[row][column][face];
     }
     public void resetBlockAccess() {
-        /*for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 4; k++) {
-                    blockAccess[i][j][k] = false;
+                    this.blockAccess[i][j][k] = false;
                 }
             }
-        }*/
-        Arrays.fill(blockAccess, false);
+        }
     }
 
     /**
@@ -121,8 +129,8 @@ class Block extends JLabel {
             for (int j = 0; j < 3; j++) {
                 blockAccessStates += "Row " + i + ": Col " + j + ": ";
                 for (int k = 0; k < 4; k++) {
-                    blockAccessStates += "Face " + k + ": " + blockAccess[i][j][k] + ", ";
-                    if (blockAccess[i][j][k]) {
+                    blockAccessStates += "Face " + k + ": " + this.blockAccess[i][j][k] + ", ";
+                    if (this.blockAccess[i][j][k]) {
                         blockAccessStates += " ";
                     }
                 }

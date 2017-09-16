@@ -29,6 +29,7 @@ public class System_Builder {
                 }
             }
         });
+
     }
 
     /**
@@ -58,10 +59,8 @@ public class System_Builder {
          */
         JLayeredPane systemBuilderPanel = new JLayeredPane();
         systemBuilder.getContentPane().add(systemBuilderPanel, BorderLayout.CENTER);
-        systemBuilderPanel.setLayout(null);
         JLayeredPane stateViewerPane = new JLayeredPane();
         stateViewer.getContentPane().add(stateViewerPane, BorderLayout.CENTER);
-        stateViewerPane.setLayout(null);
 
         //Just declares a Block called temp for moving around
         Block temp = new Block();
@@ -113,14 +112,15 @@ public class System_Builder {
         systemContainer.setBounds(190, 30, 788, 548);
         systemBuilderPanel.add(systemContainer, 0, -1);
 
+        /**
+         * 2D array to hold the properties of states at each tile on the grid
+         */
         State[][] StateGrid = new State[systemContainer.getWidth() / 32][systemContainer.getHeight() / 32];
 
+        /**
+         * Mouse listener for the main panel
+         */
         systemBuilderPanel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
             @Override
             public void mouseReleased(MouseEvent e) {
                 int leftBound = systemContainer.getX() + 2;
@@ -129,22 +129,50 @@ public class System_Builder {
                 int bottomBound = systemContainer.getY() + systemContainer.getHeight() - 2;
                 boolean isInsideBox = ((e.getX() >= leftBound) && (e.getX() <= rightBound)
                         && (e.getY() >= topBound) && (e.getY() <= bottomBound));
+
+                /**
+                 * This statement ensures that the mouse was released while dragging a temp Block over the building area
+                 */
                 if(e.getComponent().getComponentAt(e.getPoint()).equals(temp) && isInsideBox) {
                     Block perm = new Block();
+
+                    /**
+                     * The first line snaps the perm Block onto the grid
+                     * The following lines copy data from the temp Block to the perm Block
+                     */
+                    perm.setBounds(e.getX() - e.getX() % 32, e.getY() - e.getY() % 32, temp.getWidth(), temp.getHeight());
                     perm.setIcon(temp.getIcon());
-                    perm.setBounds(e.getX() - e.getX() % 32, e.getY() - e.getY() % 32,
-                            temp.getWidth(), temp.getHeight());
                     perm.setBlockAccess(temp.getBlockAccess());
                     perm.setComponentType(temp.getComponentType());
+
+                    /**
+                     * These two lines record the position of the Block relative to the grid
+                     */
                     perm.setGridX((e.getX() - 193) % 32);
                     perm.setGridY((e.getY() - 33) % 32);
+
+                    /**
+                     * The first line adds the newly made perm Block onto the panel
+                     * The second line repaints the area of the perm Block,
+                     * forcing the perm Block down from the drag layer to the drawing layer
+                     */
                     systemBuilderPanel.add(perm, 0, 0);
                     systemBuilderPanel.repaint(perm.getBounds());
+
+                    /**
+                     * Adds a mouse listener to detect when a perm Block is pressed
+                     * When it is pressed, opens a state property viewer window and currently prints connection details
+                     */
                     perm.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mousePressed(MouseEvent e) {
-                            //stateViewer.setVisible(true);
-                            //ViewWindow.main(new String[0]);
+                            stateViewer.setVisible(true);
+                            //State_Viewer.main(new String[0]);
+
+                            /**
+                             * This loop goes through each edge/face of the Block
+                             * and prints out the row, column, and face of a possible connection
+                             */
                             int side = -1;
                             for (boolean[][] x: perm.getBlockAccess()) {
                                 for (boolean[] y: x) {
@@ -156,42 +184,43 @@ public class System_Builder {
                                             int fac = side % 4;
                                             System.out.println(row + " " + col + " " + fac);
                                         }
-                                        //System.out.println(z);
                                     }
                                 }
                             }
-                            perm.printAccess();
+                            //These were just for testing/debugging
+                            //perm.printAccess();
                             //System.out.println(perm.getComponentType());
                         }
                     });
-                    /*for (boolean[][] x: perm.getBlockAccess()) {
-                        for (boolean[] y: x) {
-                            for (boolean z: y) {
-                                System.out.println(z);
-                            }
-                        }
-                    }*/
-                    //System.out.println(perm.getBlockAccess());
-                    //temp.printAccess();
                 }
-                //temp.printAccess();
+
+                /**
+                 * The first line removes the temp Block from the system building pane
+                 * The second line removes the leftovers of the temp Block from view
+                 */
                 systemBuilderPanel.remove(temp);
                 systemBuilderPanel.repaint(temp.getBounds());
-
-                //State_Input start = new State_Input();
-                //System.out.println(e.getComponent());
             }
         });
+
+        /**
+         * Adds the mouse motion listener to detect when the mouse is being dragged
+         */
         systemBuilderPanel.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                //Checks if mouse is on a JLabel
-                String mouseLocation = e.getComponent().getComponentAt(e.getPoint()).getClass().getSimpleName();
-                if (mouseLocation.equals("JLabel")) {
+                /**
+                 * Checks if mouse is on a JLabel
+                 * The if statement only runs once as a Block object will be created above the JLabel
+                 */
+                String mouseIsOn = e.getComponent().getComponentAt(e.getPoint()).getClass().getSimpleName();
+                if (mouseIsOn.equals("JLabel")) {
+                    //This line initializes the blockAccess array and also resets it for every temp Block made
+                    temp.resetBlockAccess();
                     /**
                      * Assigns components their type and attributes
+                     * What they represent is currently shown in the setComponentType method
                      */
-                    temp.resetBlockAccess();
                     if (e.getY() >= testLbl.getY() && e.getY() <= testLbl.getY() + testLbl.getHeight() - 1) {
                         temp.setIcon(testCross);
                         temp.setComponentType("testCross");
@@ -217,23 +246,22 @@ public class System_Builder {
                         temp.giveBlockAccess(0,0,3);
                     }
 
-                    Component label = e.getComponent().getComponentAt(e.getPoint());
-                    temp.setBounds(label.getBounds());
+                    /**
+                     * Copies the bounds of the JLabel component
+                     */
+                    temp.setBounds(e.getComponent().getComponentAt(e.getPoint()).getBounds());
+
+                    /**
+                     * Places the Block temp above the drawing layer onto a drag layer
+                     */
                     systemBuilderPanel.add(temp, 1);
-                    //temp.set();
                 }
-                /*if (temp.check()) {
 
-                    temp.reset();
-                }*/
+                /**
+                 * Makes the Block drag with the mouse
+                 * Runs continuously until mouse is released
+                 */
                 temp.setLocation(e.getX() - 8, e.getY() - 8);
-            }
-        });
-
-        stateViewerPane.addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-
             }
         });
     }

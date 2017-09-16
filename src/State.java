@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 
+/**
+ * This class tracks and records the values of every thermodynamic property that I currently know of
+ */
 public class State {
 
     private int stateNumber = 0;
     //private ArrayList<String> massFlow = new ArrayList<>();
     //Double[][] properties;
 
+    /**
+     * I think I've hopefully made all of these variable self-explanatory
+     * Most of these are just thermodynamic terms
+     * If you want, I can get you a sheet with all of the symbols and equations for these
+     */
     private Double temperature;
     private Double pressure;
     private Double volume;
@@ -25,7 +33,7 @@ public class State {
     private Double partialPressure;
     private Double molarRatio;
 
-    //Class State constructor
+    //State class constructor
     public State() {
 
     }
@@ -37,6 +45,10 @@ public class State {
         //properties = new Double[massFlow.size()][1];
     }*/
 
+    /**
+     * Every single one of these methods seem self-explanatory
+     * Sorry, I'm just lazy. I will eventually get to documenting all of the methods in this app
+     */
     //Get and set values of the state
     public int getStateNumber() {
         return stateNumber;
