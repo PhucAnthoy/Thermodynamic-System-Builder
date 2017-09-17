@@ -28,6 +28,24 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseMotionAdapter;
 
+/**
+ * Please note that this class is currently unused and needs to be rebuilt
+ *
+ *
+ * Like don't even look at this please
+ *
+ *
+ * It's currently not even used in the working section of the app
+ *
+ *
+ * It was just something I made as a reference later
+ *
+ *
+ * This won't be used in the final version (probably)
+ *
+ *
+ * None of this is commented
+ */
 public class State_Input {
 
     private JFrame frame;

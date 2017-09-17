@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Currently obsolete
+ */
 public class State_Viewer {
     private JFrame frame;
 
