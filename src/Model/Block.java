@@ -1,11 +1,15 @@
+package Model;
+
 import javax.swing.*;
-import java.util.Arrays;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import View.SystemDisplay;
 
 /**
  * This class gives JLabel more variables and methods to take location and linkages of elements
  * Blocks are composed to 32x32 px tiles which can be seen in the Tiles folder
  */
-class Block extends JLabel {
+public class Block extends JLabel {
     /**
      * Just what type of component the block represents
      */
@@ -42,6 +46,21 @@ class Block extends JLabel {
      * this array tracks the edge of every 32x32 tile including inside edges
      */
     boolean[][][] blockAccess = new boolean[3][3][4];
+
+    /**
+     * Just a temporary placeholder
+     */
+    Double[] properties;
+
+    public Block() {
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                SystemDisplay.turnOnInputWindow(new Block());
+            }
+        });
+    }
+
 
     /**
      * Names which component the block represents
@@ -138,6 +157,10 @@ class Block extends JLabel {
             }
         }
         System.out.println(blockAccessStates);
+    }
+
+    public void placeholder(MouseEvent e) {
+
     }
 
 }

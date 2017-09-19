@@ -1,3 +1,5 @@
+package Model;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -5,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-public class System_Builder {
+public class SystemBuilder {
 
     /**
      * Declares the two frames used
@@ -22,7 +24,7 @@ public class System_Builder {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    System_Builder window = new System_Builder();
+                    SystemBuilder window = new SystemBuilder();
                     window.systemBuilder.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,7 +37,7 @@ public class System_Builder {
     /**
      * Create the application.
      */
-    public System_Builder() {
+    public SystemBuilder() {
         initialize();
     }
 
@@ -47,10 +49,10 @@ public class System_Builder {
         /**
          * Initializes the window frames for the system builder and the state viewer
          */
-        systemBuilder = new JFrame();
+        //systemBuilder = new JFrame();
         systemBuilder.setBounds(100, 100, 1000, 600);
         systemBuilder.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        stateViewer = new JFrame();
+        //stateViewer = new JFrame();
         stateViewer.setBounds(100,100,250,250);
         stateViewer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -85,7 +87,7 @@ public class System_Builder {
         systemBuilderPanel.add(testLbl, 0);
 
         JLabel testLbl2 = new JLabel("");
-        testLbl2.setIcon(new ImageIcon(System_Builder.class.getResource("/javax/swing/plaf/basic/icons/JavaCup16.png")));
+        testLbl2.setIcon(new ImageIcon(SystemBuilder.class.getResource("/javax/swing/plaf/basic/icons/JavaCup16.png")));
         testLbl2.setBounds(32, 176, 16, 16);
         systemBuilderPanel.add(testLbl2, 0);
 
@@ -167,7 +169,7 @@ public class System_Builder {
                         @Override
                         public void mousePressed(MouseEvent e) {
                             stateViewer.setVisible(true);
-                            //State_Viewer.main(new String[0]);
+                            //StateViewer.main(new String[0]);
 
                             /**
                              * This loop goes through each edge/face of the Block
@@ -225,7 +227,7 @@ public class System_Builder {
                         temp.setIcon(testCross);
                         temp.setComponentType("testCross");
                     } else if (e.getY() >= testLbl2.getY() && e.getY() <= testLbl2.getY() + testLbl2.getHeight() - 1) {
-                        temp.setIcon(new ImageIcon(System_Builder.class.getResource("/javax/swing/plaf/basic/icons/JavaCup16.png")));
+                        temp.setIcon(new ImageIcon(SystemBuilder.class.getResource("/javax/swing/plaf/basic/icons/JavaCup16.png")));
                         temp.setComponentType("JavaIcon");
                     } else if (e.getY() >= horizontalPipeBlock.getY() && e.getY() <= horizontalPipeBlock.getY() + horizontalPipeBlock.getHeight() - 1) {
                         temp.setIcon(horizontalPipe);

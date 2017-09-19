@@ -1,29 +1,17 @@
+package Model;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
-import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.JTextField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextArea;
-import javax.swing.UIManager;
 import java.awt.Font;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.beans.PropertyChangeEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -46,7 +34,7 @@ import java.awt.event.MouseMotionAdapter;
  *
  * None of this is commented
  */
-public class State_Input {
+public class StateInput {
 
     private JFrame frame;
 
@@ -57,7 +45,7 @@ public class State_Input {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    State_Input window = new State_Input();
+                    StateInput window = new StateInput();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -69,7 +57,7 @@ public class State_Input {
     /**
      * Create the application.
      */
-    public State_Input() {
+    public StateInput() {
         initialize();
     }
 

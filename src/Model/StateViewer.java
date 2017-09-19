@@ -1,10 +1,12 @@
+package Model;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Currently obsolete
  */
-public class State_Viewer {
+public class StateViewer {
     private JFrame frame;
 
     /**
@@ -14,7 +16,7 @@ public class State_Viewer {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    State_Viewer window = new State_Viewer();
+                    StateViewer window = new StateViewer();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -26,7 +28,7 @@ public class State_Viewer {
     /**
      * Create the application.
      */
-    public State_Viewer() {
+    public StateViewer() {
         initialize();
     }
 
