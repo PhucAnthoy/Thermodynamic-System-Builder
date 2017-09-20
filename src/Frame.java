@@ -1,4 +1,5 @@
 import Block.ComponentType;
+import Block.Block;
 /**
  * This class represents the frame that would be used to put the blocks in.
  */

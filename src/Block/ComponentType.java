@@ -6,7 +6,7 @@ package Block;
 // Enumeration is great when you are listing something, it's quick, easy, and it allows the user
 // to look at all possible types.
 public enum ComponentType {
-  PIPE, TURBINE,COMPRESSER, PUMP, NOZZLE, DEFUSER, BOILER, CONDENSER, HEAT_EXCHANGER;
+  PIPE, TURBINE, COMPRESSER, PUMP, NOZZLE, DEFUSER, BOILER, CONDENSER, HEAT_EXCHANGER;
 
   /**
    * Returns the property of the type being called.
