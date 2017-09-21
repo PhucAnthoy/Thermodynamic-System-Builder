@@ -3,10 +3,12 @@ package Model;
 /*
  * This class will be just hardcoded values for experimental data
  * No longer has methods that retrieve data and compute state values
+ * I guess to put into use the principle of least knowledge, this class will only "communicate" with FixState.java
  */
 
 /**
  * Tabulated data for various states of water
+ * Note: The superheated water table is still unfinished. Please do not use it yet
  *
  * @author Anthony Tran
  * @since 2017-09-16 (this is a lie)
@@ -22,6 +24,20 @@ public class Tables {
      * 4) Enthalpy
      * 5) Entropy
      */
+
+    /**
+     * This is just an enum for the properties possible
+     * There are more, but I haven't started coding for them yet
+     */
+    public enum Index {
+        TEMPERATURE(0), PRESSURE(1), SPECIFIC_VOLUME(2), INTERNAL_ENERGY(3), ENTHALPY(4), ENTROPY(5);
+
+        Index(int index) {
+            this.index = index;
+        }
+
+        protected final int index;
+    }
 
     /**
      * Combination of the water saturated tables
@@ -397,7 +413,16 @@ public class Tables {
              200., 200., 200., 200., 200., 200., 200., 200., 200., 200., 200.,
                    240., 240., 240., 240., 240., 240., 240., 240., 240., 240.,
                    280., 280., 280., 280., 280., 280., 280., 280., 280., 280., 280.,
-                   320., 320., 320., 320., 320., 320., 320., 320., 320., 320., 320.}
+                   320., 320., 320., 320., 320., 320., 320., 320., 320., 320., 320.},
+
+            {23.739, 27.132, 30.219, 33.302, 36.383, 39.462, 42.540, 45.618, 48.696, 51.774, 54.851, 59.467,
+              4.526,  4.625,  5.163,  5.696,  6.228,  6.758,  7.287,  7.815,  8.344,  8.872,  9.400, 10.192,
+              2.365,  2.434,  2.571,  2.841,  3.108,  3.374,  3.640,  3.905,  4.170,  4.434,  4.698,  5.095,
+              1.694,  1.696,  1.793,  1.984,  2.172,  2.359,  2.546,  2.732,  2.917,  3.103,  3.288,  3.565,
+              1.159,  1.188,  1.317,  1.444,  1.570,  1.695,  1.819,  1.943,  2.067,  2.191,  2.376,  2.685,
+              0.606,          0.651,  0.716,  0.781,  0.844,  0.907,  0.969,  1.032,  1.094,  1.187,  1.341
+
+            }
     };
 
     /**
